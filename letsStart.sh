@@ -99,11 +99,39 @@ touch /var/www/html/index.php
 echo  "<?php phpinfo(); ?>" > /var/www/html/index.php 
 rm /var/www/html/index.html
 sudo service apache2 restart
-lynx http://localhost/ # should show php info
+#lynx http://localhost/ # should show php info
 
+# TUNING LOCAL ENV
+
+echo 'export LC_ALL=en_US.UTF-8' >> ~/.bash_profile
+echo 'export LANG=en_US.UTF-8' >> ~/.bash_profile
+echo 'export LANGUAGE=en' >> ~/.bash_profile
 echo 'export PS1="\e[0;35m[\u@\h \W]\$ \e[m "' >> ~/.bash_profile
 echo 'alias composer="php /usr/local/bin/composer"' >> ~/.bash_profile
 echo 'alias mc="mc -b"' >> ~/.bash_profile
+
+# VIRTUAL HOSTS
+
+# making host config
+ln -s /vagrant/* /var/www
+sudo chmod -R 777 /etc/apache2/sites-available/
+sudo cp ./example.local.conf /etc/apache2/sites-available/example.local.conf
+sudo chmod -R 777 /etc/apache2/sites-available/
+sudo a2ensite example.local.conf
+
+# making docroot with test ihdex.html
+mkdir /var/www/example
+mkdir /var/www/example/htdocs
+touch /var/www/example/htdocs/index.html
+sudo chmod -R 777 /var/www/example
+echo 'example.local reporting in' > /var/www/example/htdocs/index.html
+
+# changing hosts
+sudo echo '127.0.0.1 example.local' >> /etc/hosts
+
+sudo service apache2 restart
+
+# FINISHING
 
 clear
 php5 -v
