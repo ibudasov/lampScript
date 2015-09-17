@@ -1,8 +1,6 @@
 #!/bin/bash
 clear
 
-DEBIAN_FRONTEND=noninteractive sudo apt-get --force-yes -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold"
-
 export LANGUAGE=en
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -13,31 +11,30 @@ sudo update-locale en_US
 
 sudo aptitude update
 clear
-sudo aptitude install software-properties-common python-software-properties -y
+sudo aptitude install subversion -y
 clear
-sudo aptitude install subversion
+sudo aptitude install curl -y
 clear
-sudo aptitude install curl
+sudo aptitude install git -y
 clear
-sudo aptitude install git
+sudo aptitude install vim -y
 clear
-sudo aptitude install vim
+sudo aptitude install mc -y
 clear
-sudo aptitude install mc
-clear
-sudo aptitude install lynx-cur
+sudo aptitude install lynx-cur -y
 
 # APACHE
 
 clear
-sudo aptitude install apache2
+sudo aptitude install apache2 -y
 clear
 ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'
 
 # MYSQL
 
 clear
-sudo aptitude install mysql-server php5-mysql
+sudo aptitude install mysql-server -y
+sudo aptitude install php5-mysql  -y
 clear
 sudo mysql_install_db
 # sudo mysql_secure_installation
@@ -45,59 +42,63 @@ sudo mysql_install_db
 # PHP
 
 clear
-sudo aptitude install software-properties-common
+sudo aptitude install software-properties-common -y
 clear
-sudo aptitude install python-software-properties
+sudo aptitude install python-software-properties -y
 clear
-sudo aptitude install php5 libapache2-mod-php5 php5-mcrypt
+sudo aptitude install php5 -y
+clear
+sudo aptitude install libapache2-mod-php5 -y
+clear
+sudo aptitude install php5-mcrypt -y
 clear
 sudo service apache2 restart
 clear
-sudo aptitude install php5-cgi
+sudo aptitude install php5-cgi -y
 clear
-sudo aptitude install php5-cli
+sudo aptitude install php5-cli -y
 clear
-sudo aptitude install php-apc
+sudo aptitude install php-apc -y
 clear
-sudo aptitude install php5-common
+sudo aptitude install php5-common -y
 clear
-sudo aptitude install php5-curl
+sudo aptitude install php5-curl -y
 clear
-sudo aptitude install php5-dbg
+sudo aptitude install php5-dbg -y
 clear
-sudo aptitude install php5-gd
+sudo aptitude install php5-gd -y
 clear
-sudo aptitude install php5-gmp
+sudo aptitude install php5-gmp -y
 clear
-sudo aptitude install php5-mysql
+sudo aptitude install php5-mysql -y
 clear
-sudo aptitude install php5-odbc
+sudo aptitude install php5-odbc -y
 clear
-sudo aptitude install php5-pgsql
+sudo aptitude install php5-pgsql -y
 clear
-sudo aptitude install php5-geoip
+sudo aptitude install php5-geoip -y
 clear
-sudo aptitude install php5-imagick
+sudo aptitude install php5-imagick -y
 clear
-sudo aptitude install php5-imap
+sudo aptitude install php5-imap -y
 clear
-sudo aptitude install php5-mcrypt
+sudo aptitude install php5-mcrypt -y
 clear
-sudo aptitude install php5-memcache
+sudo aptitude install php5-memcache -y
 clear
-sudo aptitude install php5-memcached
+sudo aptitude install php5-memcached -y
 clear
 # Conflicts: php5-mysql but 5.5.9+dfsg-1ubuntu4.11 is to be installed.
 # sudo aptitude install php5-mysqlnd
 clear
 # sudo aptitude install php5-xcache
 clear
-sudo aptitude install php5-xdebug
+sudo aptitude install php5-xdebug -y
 
 sudo curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
-sudo mv composer.phar /usr/local/bin
+#sudo mv composer.phar /usr/local/bin
 
-sudo chmod -R 755 /var/www
+sudo chmod -R 777 /var/www
 touch /var/www/html/index.php
 echo  "<?php phpinfo(); ?>" > /var/www/html/index.php 
 rm /var/www/html/index.html
@@ -117,16 +118,19 @@ echo 'alias mc="mc -b"' >> ~/.bash_profile
 
 # making host config
 ln -s /vagrant/* /var/www
-sudo chmod -R 755 /etc/apache2/sites-available/
+sudo chmod -R 777 /etc/apache2/sites-available/
+wget https://raw.githubusercontent.com/ibudasov/lampScript/master/example.local.conf
 sudo cp ./example.local.conf /etc/apache2/sites-available/example.local.conf
-sudo chmod -R 755 /etc/apache2/sites-available/
+sudo chmod -R 777 /etc/apache2/sites-available/
 sudo a2ensite example.local.conf
 
 # making docroot with test ihdex.html
+sudo chmod -R 777 /var/www
 mkdir /var/www/example
+sudo chmod -R 777 /var/www/example
 mkdir /var/www/example/htdocs
+sudo chmod -R 777 /var/www/example
 touch /var/www/example/htdocs/index.html
-sudo chmod -R 755 /var/www/example
 echo 'example.local reporting in' > /var/www/example/htdocs/index.html
 
 # changing hosts

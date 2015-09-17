@@ -2,7 +2,7 @@
 
 Use this script for simplify setting up LAMP stack installation on Ubuntu systems.
 
-# Usage
+### Usage
 
 Install for your host OS:
 
@@ -16,11 +16,11 @@ Then run commands:
 - vagrant ssh
 - Inside Vagrant run this script /vagrant/lampScript/letsStart.sh
 
-# Post-install
+### Post-install
 
 change vagrantfile:
 
-- config.vm.network :forwarded_port, guest: 80, host: 8000
+- config.vm.network :forwarded_port, guest: 80, host: 8888
 - config.vm.network :forwarded_port, guest: 3306, host: 3306
 - vagrant reload
 - edit your host OS /etc/hosts
@@ -38,7 +38,7 @@ You can connect from your host OS to Vagrant's MySQL:
 - ssh password — vagrant
 - ssh port — 2222
 
-# Included:
+### Included:
 
 - PHP (with lots of modules)
 - MySQL
@@ -46,8 +46,6 @@ You can connect from your host OS to Vagrant's MySQL:
 - Vim, mc, git, svn, etc...
 
 BEWARE: versions of installing software strongly depends on your OS version. 
-
-# VIRTUAL HOSTS
 
 ### making host config
 
