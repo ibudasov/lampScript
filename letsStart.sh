@@ -119,6 +119,15 @@ echo 'export PS1="\e[0;35m[\u@\h \W]\$ \e[m "' >> ~/.bash_profile
 echo 'alias composer="php /usr/local/bin/composer"' >> ~/.bash_profile
 echo 'alias mc="mc -b"' >> ~/.bash_profile
 
+
+# SYMFONY STUFF
+
+sudo curl -LsS http://symfony.com/installer -o /usr/local/bin/symfony
+sudo chmod a+x /usr/local/bin/symfony
+sudo sh -c "echo 'date.timezone = \"Europe/Amsterdam\"' >> /etc/php5/cli/php.ini"
+sudo sh -c "echo 'xdebug.max_nesting_level=250' >> /etc/php5/cli/php.ini"
+sudo aptitude install php5-intl -y
+
 # VIRTUAL HOSTS
 
 # making host config
