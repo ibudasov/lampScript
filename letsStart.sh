@@ -102,6 +102,11 @@ sudo chmod -R 777 /var/www
 touch /var/www/html/index.php
 echo  "<?php phpinfo(); ?>" > /var/www/html/index.php 
 rm /var/www/html/index.html
+
+sudo a2enmod rewrite
+sudo a2enmod headers
+sudo php5enmod mcrypt
+
 sudo service apache2 restart
 #lynx http://localhost/ # should show php info
 
