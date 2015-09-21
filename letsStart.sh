@@ -108,6 +108,10 @@ sudo a2enmod headers
 sudo php5enmod mcrypt
 sudo sh -c "echo 'ServerName localhost' >> /etc/apache2/apache2.conf"
 sudo service apache2 restart
+
+sudo sh -c "echo 'export APACHE_RUN_USER=vagrant' >> /etc/apache2/envvars"
+sudo sh -c "echo 'export APACHE_RUN_GROUP=vagrant' >> /etc/apache2/envvars"
+
 #lynx http://localhost/ # should show php info
 
 # TUNING LOCAL ENV
