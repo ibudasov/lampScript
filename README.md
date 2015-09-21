@@ -63,3 +63,4 @@ BEWARE: versions of installing software strongly depends on your OS version.
 ### Got trouble?
 
 - sudo tail /var/log/apache2/error.log
+- tailf /vagrant/marathon/deploy/var/logs/development.log
