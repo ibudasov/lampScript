@@ -106,7 +106,7 @@ rm /var/www/html/index.html
 sudo a2enmod rewrite
 sudo a2enmod headers
 sudo php5enmod mcrypt
-
+sudo sh -c "echo 'ServerName localhost' >> /etc/apache2/apache2.conf"
 sudo service apache2 restart
 #lynx http://localhost/ # should show php info
 
@@ -115,7 +115,9 @@ sudo service apache2 restart
 echo 'export LC_ALL=en_US.UTF-8' >> ~/.bash_profile
 echo 'export LANG=en_US.UTF-8' >> ~/.bash_profile
 echo 'export LANGUAGE=en' >> ~/.bash_profile
-echo 'export PS1="\e[0;35m[\u@\h \W]\$ \e[m "' >> ~/.bash_profile
+# 35 = magenta
+# 36 = cyan
+echo 'export PS1="\[\e[35m\]me@\h\[\e[m\] \w \[\e[31m\]\\$\[\e[m\] "' >> ~/.bash_profile
 echo 'alias composer="php /usr/local/bin/composer"' >> ~/.bash_profile
 echo 'alias mc="mc -b"' >> ~/.bash_profile
 

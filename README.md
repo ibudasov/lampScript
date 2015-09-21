@@ -50,20 +50,16 @@ BEWARE: versions of installing software strongly depends on your OS version.
 ### making host config
 
 - ln -s /vagrant/* /var/www
-- sudo chmod -R 777 /etc/apache2/sites-available/
-- sudo cp ./example.local.conf /etc/apache2/sites-available/example.local.conf # see example.local.conf in this repo
+- sudo cp /etc/apache2/sites-available/example.local.conf /etc/apache2/sites-available/example.local.conf
+- vim /etc/apache2/sites-available/example.local.conf
 - sudo chmod -R 777 /etc/apache2/sites-available/
 - sudo a2ensite example.local.conf
 
-### making docroot with test ihdex.html
-
-- mkdir /var/www/example
-- mkdir /var/www/example/htdocs
-- touch /var/www/example/htdocs/index.html
-- sudo chmod -R 777 /var/www/example
-- echo 'example.local reporting in' > /var/www/example/htdocs/index.html
-
 ### changing hosts
 
-- sudo echo '127.0.0.1 example.local' >> /etc/hosts
+- sudo sh -c "echo '127.0.0.1 example.local' >> /etc/hosts"
 - sudo service apache2 restart
+
+### Got trouble?
+
+- sudo tail /var/log/apache2/error.log
