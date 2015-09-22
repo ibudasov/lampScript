@@ -1,52 +1,60 @@
 #!/usr/bin/env bash
 
-echo -e "Hi, what's your project name?"
-read projectName
-echo "OK, project name is '$projectName', so I going to create vhost http://$projectName.local"
-echo -e "Could you please specify document root?"
-read documentRoot
+if [ $# -eq 2 ] ; then
+    PROJECT_NAME=$1
+    MY_DOC_ROOT=$2
+    echo creating http://$PROJECT_NAME.local/ ...
+else
+    echo -e "Hi, what's your project name?"
+    read PROJECT_NAME
+    echo "OK, project name is '$PROJECT_NAME', so I going to create vhost http://$PROJECT_NAME.local"
+    echo -e "Could you please specify document root?"
+    read MY_DOC_ROOT
+fi
 
-if [ -d $documentRoot ]; then
+if [ -d $MY_DOC_ROOT ]; then
 	echo "Directory exists"
 else
-	echo "Directory does not exists: $documentRoot"
+	echo "Directory does not exists: $MY_DOC_ROOT"
 	exit 1
 fi
 
-echo creating http://$projectName.local/ ...
 
 # making host config
 sudo chmod -R 777 /etc/apache2/sites-available/
 
-touch /etc/apache2/sites-available/$projectName.local.conf
-echo created config placeholder /etc/apache2/sites-available/$projectName.local.conf
+touch /etc/apache2/sites-available/$PROJECT_NAME.local.conf
 echo "
 <VirtualHost *:80>
         ServerAdmin webmaster@localhost
-        DocumentRoot $documentRoot
-        ServerName $projectName.local
-        ServerAlias www.$projectName.local
+        DocumentRoot $MY_DOC_ROOT
+        ServerName $PROJECT_NAME.local
+        ServerAlias www.$PROJECT_NAME.local
 
-        <Directory $documentRoot>
-                Order allow,deny
-                Allow from all
-                AllowOverride All
+        <Directory $MY_DOC_ROOT>
+            Order allow,deny
+            Allow from all
+            Require all granted
+            Options +Indexes +FollowSymLinks +ExecCGI
+            AllowOverride AuthConfig FileInfo
         </Directory>
 
-        ErrorLog ${APACHE_LOG_DIR}/error.log
-        CustomLog ${APACHE_LOG_DIR}/access.log combined
+        ErrorLog /var/log/apache2/error.log
+        CustomLog /var/log/apache2/access.log combined
 </VirtualHost>
-" > /etc/apache2/sites-available/$projectName.local.conf
+" > /etc/apache2/sites-available/$PROJECT_NAME.local.conf
 
-echo config populated /etc/apache2/sites-available/$projectName.local.conf
+echo config created /etc/apache2/sites-available/$PROJECT_NAME.local.conf
+
+cat /etc/apache2/sites-available/$PROJECT_NAME.local.conf
 
 sudo chmod -R 777 /etc/apache2/sites-available/
-sudo a2ensite $projectName.local.conf
+sudo a2ensite $PROJECT_NAME.local.conf
 
 # changing hosts
-sudo sh -c "echo '127.0.0.1 $projectName.local' >> /etc/hosts"
+sudo sh -c "echo '127.0.0.1 $PROJECT_NAME.local' >> /etc/hosts"
 
 sudo service apache2 restart
 
-lynx http://$projectName.local/
+lynx http://$PROJECT_NAME.local/
 
