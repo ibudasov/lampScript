@@ -134,6 +134,12 @@ sudo sh -c "echo 'date.timezone = \"Europe/Amsterdam\"' >> /etc/php5/cli/php.ini
 sudo sh -c "echo 'xdebug.max_nesting_level=250' >> /etc/php5/cli/php.ini"
 sudo aptitude install php5-intl -y
 
+# NODEJS STUFF
+
+sudo apt-get update
+sudo apt-get install nodejs -y
+sudo apt-get install npm -y
+
 # VIRTUAL HOSTS
 
 # making host config
