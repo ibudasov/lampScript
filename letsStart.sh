@@ -142,14 +142,6 @@ sudo apt-get install npm -y
 
 # VIRTUAL HOSTS
 
-# making host config
-ln -s /vagrant/* /var/www
-sudo chmod -R 777 /etc/apache2/sites-available/
-wget https://raw.githubusercontent.com/ibudasov/lampScript/master/example.local.conf
-sudo cp ./example.local.conf /etc/apache2/sites-available/example.local.conf
-sudo chmod -R 777 /etc/apache2/sites-available/
-sudo a2ensite example.local.conf
-
 # making docroot with test ihdex.html
 sudo chmod -R 777 /var/www
 mkdir /var/www/example
@@ -159,10 +151,8 @@ sudo chmod -R 777 /var/www/example
 touch /var/www/example/htdocs/index.html
 echo 'example.local reporting in' > /var/www/example/htdocs/index.html
 
-# changing hosts
-sudo sh -c "echo '127.0.0.1 example.local' >> /etc/hosts"
-
-sudo service apache2 restart
+wget https://raw.githubusercontent.com/ibudasov/lampScript/master/addVhost.sh
+./addVhost.sh example /var/www/example
 
 # FINISHING
 
