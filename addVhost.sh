@@ -6,6 +6,13 @@ echo "OK, project name is '$projectName', so I going to create vhost http://$pro
 echo -e "Could you please specify document root?"
 read documentRoot
 
+if [ -d $documentRoot ]; then
+	echo "Directory exists"
+else
+	echo "Directory does not exists: $documentRoot"
+	exit 1
+fi
+
 echo creating http://$projectName.local/ ...
 
 # making host config
