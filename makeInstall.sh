@@ -130,7 +130,7 @@ echo 'alias ls="ls -gat"' >> ~/.bash_profile
 
 
 # SYMFONY STUFF
-
+clear
 sudo curl -LsS http://symfony.com/installer -o /usr/local/bin/symfony
 sudo chmod a+x /usr/local/bin/symfony
 sudo sh -c "echo 'date.timezone = \"Europe/Amsterdam\"' >> /etc/php5/cli/php.ini"
@@ -138,13 +138,13 @@ sudo sh -c "echo 'xdebug.max_nesting_level=250' >> /etc/php5/cli/php.ini"
 sudo aptitude install php5-intl -y
 
 # NODEJS STUFF
-
+clear
 sudo apt-get update
 sudo apt-get install nodejs -y
 sudo apt-get install npm -y
 
 # SWAP for composer mostly
-
+clear
 sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
 sudo /sbin/mkswap /var/swap.1
 sudo /sbin/swapon /var/swap.1
