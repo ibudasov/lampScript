@@ -36,7 +36,7 @@ echo "
             Allow from all
             Require all granted
             Options +Indexes +FollowSymLinks +ExecCGI
-            AllowOverride AuthConfig FileInfo
+            AllowOverride All AuthConfig FileInfo
         </Directory>
 
         ErrorLog /var/log/apache2/error.log
