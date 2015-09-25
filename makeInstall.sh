@@ -143,6 +143,12 @@ sudo apt-get update
 sudo apt-get install nodejs -y
 sudo apt-get install npm -y
 
+# SWAP for composer mostly
+
+sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
+sudo /sbin/mkswap /var/swap.1
+sudo /sbin/swapon /var/swap.1
+
 # VIRTUAL HOSTS
 
 # making docroot with test ihdex.html
