@@ -126,6 +126,7 @@ echo 'export LANGUAGE=en' >> ~/.bash_profile
 echo 'export PS1="\[\e[35m\]me@\h\[\e[m\] \w \[\e[31m\]\\$\[\e[m\] "' >> ~/.bash_profile
 echo 'alias composer="php /usr/local/bin/composer"' >> ~/.bash_profile
 echo 'alias mc="mc -b"' >> ~/.bash_profile
+echo 'alias ls="ls -ga"' >> ~/.bash_profile
 
 
 # SYMFONY STUFF
