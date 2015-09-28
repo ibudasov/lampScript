@@ -142,6 +142,8 @@ clear
 sudo apt-get update
 sudo apt-get install nodejs -y
 sudo apt-get install npm -y
+sudo npm install -g less
+
 
 # SWAP for composer mostly
 clear
