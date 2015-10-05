@@ -90,6 +90,8 @@ sudo aptitude install php5-memcached -y
 clear
 sudo aptitude install phpunit -y
 clear
+sudo aptitude install httpie -y
+clear
 # Conflicts: php5-mysql but 5.5.9+dfsg-1ubuntu4.11 is to be installed.
 # sudo aptitude install php5-mysqlnd
 clear
