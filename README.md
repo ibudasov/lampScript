@@ -8,6 +8,7 @@ Install for your host OS:
 
 - http://www.virtualbox.org/
 - https://www.vagrantup.com/
+- BEWARE: virtual machine should have >1GB RAM (default is 512m), otherwise problems with `composer` could be detected    
 
 Then run commands:
 
