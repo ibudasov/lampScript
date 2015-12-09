@@ -14,7 +14,7 @@ Then run commands:
 - vagrant init ubuntu/trusty64
 - vagrant up
 - vagrant ssh
-- Inside Vagrant run this script /vagrant/lampScript/letsStart.sh
+- Inside Vagrant run this script /vagrant/lampScript/makeInstall.sh
 
 ### Post-install
 
@@ -47,7 +47,11 @@ You can connect from your host OS to Vagrant's MySQL:
 
 BEWARE: versions of installing software strongly depends on your OS version. 
 
-### making host config
+### adding vhost (newschool)
+
+- /vagrant/lampScript/addVhost.sh
+
+### making host config (oldschool)
 
 - ln -s /vagrant/* /var/www
 - sudo cp /etc/apache2/sites-available/example.local.conf /etc/apache2/sites-available/example.local.conf
@@ -55,7 +59,7 @@ BEWARE: versions of installing software strongly depends on your OS version.
 - sudo chmod -R 777 /etc/apache2/sites-available/
 - sudo a2ensite example.local.conf
 
-### changing hosts
+### changing hosts (oldschool)
 
 - sudo sh -c "echo '127.0.0.1 example.local' >> /etc/hosts"
 - sudo service apache2 restart
