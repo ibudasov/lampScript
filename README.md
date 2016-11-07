@@ -51,6 +51,7 @@ BEWARE: versions of installing software strongly depends on your OS version.
 ### adding vhost (newschool)
 
 - /vagrant/lampScript/addVhost.sh
+- add the host to /etc/hosts on your main machine
 
 ### making host config (oldschool)
 
