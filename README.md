@@ -25,7 +25,7 @@ change vagrantfile:
 - config.vm.network :forwarded_port, guest: 3306, host: 3306
 - vagrant reload
 - edit your host OS /etc/hosts
-- open in your host system http://localhost:8000
+- open in your host system http://localhost:8888
 
 You can connect from your host OS to Vagrant's MySQL:
 
