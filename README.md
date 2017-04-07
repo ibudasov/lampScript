@@ -42,6 +42,7 @@ You can connect from your host OS to Vagrant's MySQL:
 ### Included:
 
 - PHP (with lots of modules)
+- https://www.digitalocean.com/community/tutorials/how-to-upgrade-to-php-7-on-ubuntu-14-04
 - MySQL
 - Apache (with vhosts)
 - Vim, mc, git, svn, etc...
